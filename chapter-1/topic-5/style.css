@@ -1,0 +1,58 @@
+/* Mobile Screen that very small < 576px */
+body {
+  background-color: darkblue;
+  color: white;
+}
+
+h1 {
+  font-size: smaller;
+  text-align: center;
+}
+
+/* Small devices > 576px */
+@media (min-width: 576px) {
+  body {
+    background-color: yellowgreen;
+    color: white;
+  }
+
+  h1 {
+    font-size: small;
+  }
+}
+
+/* Medium devices > 768px (tablets) */
+@media (min-width: 768px) {
+  body {
+    background-color: chartreuse;
+    color: white;
+  }
+
+  h1 {
+    font-size: medium;
+  }
+}
+
+/* Large devices > 992px (desktop) */
+@media (min-width: 992px) {
+  body {
+    background-color: darkcyan;
+    color: white;
+  }
+
+  h1 {
+    font-size: large;
+  }
+}
+
+/* Extra Large devices > 1200px (2k monitor) */
+@media (min-width: 1200px) {
+  body {
+    background-color: darkslateblue;
+    color: white;
+  }
+
+  h1 {
+    font-size: x-large;
+  }
+}
