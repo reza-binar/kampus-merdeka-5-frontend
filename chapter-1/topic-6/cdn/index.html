@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap - CSS Framework</title>
+
+    <!-- Import bootsrap by online (CDN) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container">
+        <a class="navbar-brand" href="./">Home</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="./login.html">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Jumbotron -->
+    <div class="p-5 bg-secondary text-bg-secondary mb-4">
+      <div class="container py-5">
+        <div class="text-center">
+          <h1>Halaman Pertama Boostrap</h1>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae
+            odit harum fugit eos iusto eligendi praesentium hic porro aut
+            veritatis enim voluptatibus error adipisci accusamus mollitia
+            excepturi, fugiat tempore consequatur.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row Column content -->
+    <div class="container mt-4">
+      <div class="row">
+        <!-- Total per row = 12 -->
+        <div class="col-md-4 gx-5">
+          <h3>Kolom 1</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Necessitatibus rem nesciunt, ullam non esse provident! Esse
+            reprehenderit corrupti sequi? Illo, nemo eum rerum obcaecati quasi
+            id vel voluptates nihil quaerat.
+          </p>
+        </div>
+        <div class="col-md-4 gx-5">
+          <h3>Kolom 2</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Necessitatibus rem nesciunt, ullam non esse provident! Esse
+            reprehenderit corrupti sequi? Illo, nemo eum rerum obcaecati quasi
+            id vel voluptates nihil quaerat.
+          </p>
+        </div>
+        <div class="col-md-4 gx-5">
+          <h3>Kolom 3</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Necessitatibus rem nesciunt, ullam non esse provident! Esse
+            reprehenderit corrupti sequi? Illo, nemo eum rerum obcaecati quasi
+            id vel voluptates nihil quaerat.
+          </p>
+        </div>
+      </div>
+
+      <!-- Table, you can check the bootstrap docs to more details -->
+      <div class="table-responsive">
+        <table class="table table-secondary table-striped">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Name</th>
+              <th>Class</th>
+              <th>City</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>1</th>
+              <td>Dwipayana Ismulya</td>
+              <td>Frontend Javascript (React)</td>
+              <td>Klaten</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Images -->
+    <div class="container">
+      <img
+        src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2286&q=80"
+        alt="Cat"
+        class="img-fluid rounded-2"
+      />
+      <!-- <img
+        src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2286&q=80"
+        alt="Cat"
+        class="img-thumbnail"
+      />
+      <img
+        src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2286&q=80"
+        alt="Cat"
+        class="img-fluid rounded-circle"
+      /> -->
+    </div>
+
+    <!-- Import bootsrap by online (CDN) for bootstrap.js (carousell, slider, navbar mobile...) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
