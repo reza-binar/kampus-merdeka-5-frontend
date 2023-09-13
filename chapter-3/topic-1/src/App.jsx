@@ -1,62 +1,56 @@
 import { useState } from "react";
 import "./App.css";
+import Comparison from "./components/Comparison";
 
 function App() {
   const [personOne, setPersonOne] = useState("");
   const [personTwo, setPersonTwo] = useState("");
   const [isSamePerson, setIsSamePerson] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
-  const checkIsSamePerson = (event) => {
-    event.preventDefault();
+  const checkIsSamePerson = () => {
+    // event.preventDefault()
 
-    if (!personOne || !personTwo) {
-      alert("Person one or person two is not valid!");
-    }
+    // if (!personOne || !personTwo) {
+    //   alert("Person one or person two is not valid!");
+    // }
 
     setIsLoading(true);
+    setIsChecked(true);
 
-    setTimeout(() => {
-      if (personOne === personTwo) {
-        setIsSamePerson(true);
-      } else {
-        setIsSamePerson(false);
-      }
+    // setTimeout(() => {
+    if (personOne === personTwo) {
+      setIsSamePerson(true);
+    } else {
+      setIsSamePerson(false);
+    }
 
-      setIsLoading(false);
-    }, 1000);
+    setIsLoading(false);
+    // }, 1000);
   };
 
   return (
     <>
-      <div>
-        <label htmlFor="personOne">Person One:</label>
-        <input
-          type="text"
-          value={personOne}
-          onChange={(event) => setPersonOne(event.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="personTwo">Person Two:</label>
-        <input
-          type="text"
-          value={personTwo}
-          onChange={(event) => setPersonTwo(event.target.value)}
-        />
-      </div>
-      <div>
-        <button type="submit" onClick={checkIsSamePerson}>
-          {!isLoading ? "Check!" : "Checking..."}
-        </button>
-      </div>
-      <div>
-        <h2>
-          {personOne &&
-            personTwo &&
-            (isSamePerson ? "The person is same!" : "Yep, different person!")}
-        </h2>
-      </div>
+      <Comparison
+        personOne={personOne}
+        personTwo={personTwo}
+        isChecked={isChecked}
+        isSamePerson={isSamePerson}
+        isLoading={isLoading}
+        checkIsSamePerson={checkIsSamePerson}
+        setPersonOne={setPersonOne}
+        setPersonTwo={setPersonTwo}
+        setIsChecked={setIsChecked}
+      >
+        <h1>Lorem ipsum dolor</h1>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore
+          soluta cum voluptatem qui! Quam voluptas quo veniam at cum, eius
+          repellat eaque, suscipit cupiditate consequuntur odio quasi, numquam
+          reprehenderit! Ducimus.
+        </p>
+      </Comparison>
     </>
   );
 }
