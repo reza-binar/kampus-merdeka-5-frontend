@@ -1,57 +1,18 @@
-import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Comparison from "./components/Comparison";
+import PeopleComparison from "./pages/PeopleComparison";
 
 function App() {
-  const [personOne, setPersonOne] = useState("");
-  const [personTwo, setPersonTwo] = useState("");
-  const [isSamePerson, setIsSamePerson] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
-
-  const checkIsSamePerson = () => {
-    // event.preventDefault()
-
-    // if (!personOne || !personTwo) {
-    //   alert("Person one or person two is not valid!");
-    // }
-
-    setIsLoading(true);
-    setIsChecked(true);
-
-    // setTimeout(() => {
-    if (personOne === personTwo) {
-      setIsSamePerson(true);
-    } else {
-      setIsSamePerson(false);
-    }
-
-    setIsLoading(false);
-    // }, 1000);
-  };
-
   return (
-    <>
-      <Comparison
-        personOne={personOne}
-        personTwo={personTwo}
-        isChecked={isChecked}
-        isSamePerson={isSamePerson}
-        isLoading={isLoading}
-        checkIsSamePerson={checkIsSamePerson}
-        setPersonOne={setPersonOne}
-        setPersonTwo={setPersonTwo}
-        setIsChecked={setIsChecked}
-      >
-        <h1>Lorem ipsum dolor</h1>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore
-          soluta cum voluptatem qui! Quam voluptas quo veniam at cum, eius
-          repellat eaque, suscipit cupiditate consequuntur odio quasi, numquam
-          reprehenderit! Ducimus.
-        </p>
-      </Comparison>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<h1>Hello World</h1>} />
+        <Route path="/people-comparison" element={<PeopleComparison />} />
+
+        {/* The page for not found url path */}
+        <Route path="*" element={<h1>404 Not Found</h1>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
