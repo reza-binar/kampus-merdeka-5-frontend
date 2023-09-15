@@ -1,10 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import PeopleComparison from "./pages/PeopleComparison";
+import Header from "./components/Header";
 
 function App() {
   return (
     <BrowserRouter>
+      <Header />
+
       <Routes>
         <Route path="/" element={<h1>Hello World</h1>} />
         <Route path="/people-comparison" element={<PeopleComparison />} />
