@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Card, Container } from "react-bootstrap";
 import Comparison from "../components/Comparison";
 
 const PeopleComparison = () => {
@@ -22,25 +23,33 @@ const PeopleComparison = () => {
   };
 
   return (
-    <Comparison
-      personOne={personOne}
-      personTwo={personTwo}
-      isChecked={isChecked}
-      isSamePerson={isSamePerson}
-      isLoading={isLoading}
-      checkIsSamePerson={checkIsSamePerson}
-      setPersonOne={setPersonOne}
-      setPersonTwo={setPersonTwo}
-      setIsChecked={setIsChecked}
-    >
-      <h1>Lorem ipsum dolor</h1>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore
-        soluta cum voluptatem qui! Quam voluptas quo veniam at cum, eius
-        repellat eaque, suscipit cupiditate consequuntur odio quasi, numquam
-        reprehenderit! Ducimus.
-      </p>
-    </Comparison>
+    <Container>
+      <Card className="mt-5">
+        <Card.Body>
+          <div className="d-flex flex-column justify-content-center align-items-center">
+            <Comparison
+              personOne={personOne}
+              personTwo={personTwo}
+              isChecked={isChecked}
+              isSamePerson={isSamePerson}
+              isLoading={isLoading}
+              checkIsSamePerson={checkIsSamePerson}
+              setPersonOne={setPersonOne}
+              setPersonTwo={setPersonTwo}
+              setIsChecked={setIsChecked}
+            >
+              <h1>Lorem ipsum dolor</h1>
+              <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Inventore soluta cum voluptatem qui! Quam voluptas quo veniam at
+                cum, eius repellat eaque, suscipit cupiditate consequuntur odio
+                quasi, numquam reprehenderit! Ducimus.
+              </p>
+            </Comparison>
+          </div>
+        </Card.Body>
+      </Card>
+    </Container>
   );
 };
 

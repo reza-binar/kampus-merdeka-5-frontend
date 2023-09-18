@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
+import { Form, InputGroup } from "react-bootstrap";
 
 function Comparison({
   personOne,
@@ -28,27 +29,28 @@ function Comparison({
 
   return (
     <>
-      <div>
-        <label htmlFor="personOne">Person One:</label>
-        <input
-          type="text"
+      <InputGroup className="mb-3">
+        <InputGroup.Text id="person-one">Person One</InputGroup.Text>
+        <Form.Control
+          placeholder="Person One"
+          aria-label="Person One"
+          aria-describedby="person-one"
           value={personOne}
           onChange={(event) => setPersonOne(event.target.value)}
         />
-      </div>
-      <div>
-        <label htmlFor="personTwo">Person Two:</label>
-        <input
-          type="text"
+      </InputGroup>
+
+      <InputGroup className="mb-3">
+        <InputGroup.Text id="person-two">Person Two</InputGroup.Text>
+        <Form.Control
+          placeholder="Person Two"
+          aria-label="Person Two"
+          aria-describedby="person-two"
           value={personTwo}
           onChange={(event) => setPersonTwo(event.target.value)}
         />
-      </div>
-      {/* <div>
-        <button type="submit" onClick={checkIsSamePerson}>
-          {!isLoading ? "Check!" : "Checking..."}
-        </button>
-      </div> */}
+      </InputGroup>
+
       <div>
         <h2>
           {isChecked &&

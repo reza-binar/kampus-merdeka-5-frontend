@@ -1,0 +1,12 @@
+.btn {
+    padding: 1em; border: 1px solid rgba(0,0,0,0.8);
+    border-radius: 2px; background: none !important;
+}
+
+.btn-sm {
+    font-size: 1em; padding: 1em;
+}
+
+.btn-success {
+    background-color: green; color: white;
+}
