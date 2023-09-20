@@ -4,6 +4,7 @@ import PeopleComparison from "./pages/PeopleComparison";
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import ModuleStyles from "./pages/ModuleStyles";
+import Student from "./pages/Students";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/people-comparison" element={<PeopleComparison />} />
         <Route path="/module-styles" element={<ModuleStyles />} />
+        <Route path="/students" element={<Student />} />
 
         {/* The page for not found url path */}
         <Route path="*" element={<h1>404 Not Found</h1>} />
