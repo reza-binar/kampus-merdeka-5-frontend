@@ -4,21 +4,23 @@ const axios = require("axios"); // In frontend, it will be import axios from "ax
 let data;
 
 axios
-  .get("https://jsonplaceholder.typicode.com/posts/90")
-  .then((response) => {
-    data = response?.data;
-    const { userId } = data;
+    .get("https://jsonplaceholder.typicode.com/posts/90")
+    .then((response) => {
+        data = response?.data;
+        const { userId } = data;
 
-    return axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`);
-  })
-  .then((response) => {
-    data.user = response?.data;
+        return axios.get(
+            `https://jsonplaceholder.typicode.com/users/${userId}`
+        );
+    })
+    .then((response) => {
+        data.user = response?.data;
 
-    console.log(data);
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+        console.log(data);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
 
 /* 
     It's like -> it will not working if you run the below code, but logically like below!
