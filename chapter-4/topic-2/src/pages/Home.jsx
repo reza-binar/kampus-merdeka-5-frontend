@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Col, Container, Row } from "react-bootstrap";
+import MovieItem from "../components/MovieItem";
 
 const Home = () => {
     const [popularMovies, setPopularMovies] = useState([]);
@@ -49,7 +51,7 @@ const Home = () => {
         };
 
         getPopularMovies();
-    }, [errors]);
+    }, []);
 
     if (errors.isError) {
         return <h1>{errors.message}</h1>;
@@ -60,14 +62,23 @@ const Home = () => {
     }
 
     return (
-        <>
-            {popularMovies.map((movie) => (
-                <div key={movie?.id}>
-                    <h1>{movie?.title}</h1>
-                    <p>{movie?.overview}</p>
-                </div>
-            ))}
-        </>
+        <Container>
+            <Row className="g-5">
+                {popularMovies.map((movie) => (
+                    <Col md={3} key={movie?.id}>
+                        <MovieItem
+                            id={movie?.id}
+                            imageURL={
+                                import.meta.env.VITE_API_IMAGE_URL +
+                                movie?.poster_path
+                            }
+                            overview={movie?.overview}
+                            title={movie?.title}
+                        />
+                    </Col>
+                ))}
+            </Row>
+        </Container>
     );
 };
 
