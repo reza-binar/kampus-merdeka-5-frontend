@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Col, Container, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import MovieItem from "../components/MovieItem";
 
 const Home = () => {
+    const navigate = useNavigate();
+
     const [popularMovies, setPopularMovies] = useState([]);
     const [errors, setErrors] = useState({
         isError: false,
@@ -11,23 +14,57 @@ const Home = () => {
     });
 
     useEffect(() => {
-        const getPopularMovies = async () => {
+        const getMe = async () => {
             try {
-                const response = await axios.get(
-                    `${
-                        import.meta.env.VITE_API_URL
-                    }/3/movie/popular?language=en-US&page=1`,
+                const token = localStorage.getItem("token");
+                if (!token) {
+                    return navigate("/login");
+                }
+
+                await axios.get(
+                    `${import.meta.env.VITE_API_URL}/api/v1/auth/me`,
                     {
                         headers: {
-                            Authorization: `Bearer ${
-                                import.meta.env.VITE_API_AUTH_TOKEN
-                            }`,
+                            Authorization: `Bearer ${token}`,
                         },
                     }
                 );
-                const { data } = response;
+            } catch (error) {
+                if (axios.isAxiosError(error)) {
+                    if (error.response.status === 401) {
+                        localStorage.removeItem("token");
+                        return navigate("/login");
+                    }
 
-                setPopularMovies(data?.results);
+                    alert(error?.response?.data?.message);
+                    return;
+                }
+
+                alert(error?.message);
+            }
+        };
+
+        getMe();
+    }, []);
+
+    useEffect(() => {
+        const getPopularMovies = async () => {
+            try {
+                // Get token from local storage
+                const token = localStorage.getItem("token");
+                if (!token) return;
+
+                const response = await axios.get(
+                    `${import.meta.env.VITE_API_URL}/api/v1/movie/popular`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+                const { data } = response.data;
+
+                setPopularMovies(data);
                 setErrors({ ...errors, isError: false });
             } catch (error) {
                 if (axios.isAxiosError(error)) {
@@ -35,8 +72,7 @@ const Home = () => {
                         ...errors,
                         isError: true,
                         message:
-                            error?.response?.data?.status_message ||
-                            error?.message,
+                            error?.response?.data?.message || error?.message,
                     });
                     return;
                 }

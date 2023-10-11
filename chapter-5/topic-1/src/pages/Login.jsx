@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Button, Card, Container, Form } from "react-bootstrap";
 import axios from "axios";
+// import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+    // const navigate = useNavigate();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -11,7 +14,7 @@ const Login = () => {
 
         try {
             const response = await axios.post(
-                `https://shy-cloud-3319.fly.dev/api/v1/auth/login`,
+                `${import.meta.env.VITE_API_URL}/api/v1/auth/login`,
                 {
                     email,
                     password,
@@ -20,7 +23,15 @@ const Login = () => {
             const { data } = response.data;
             const { token } = data;
 
-            alert(token);
+            // Save our token
+            localStorage.setItem("token", token);
+
+            // Redirect to home
+            // navigate("/");
+
+            // Redirect to home or reload the home
+            // This is temporary solution, the better solution is using redux
+            window.location.replace("/");
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 alert(error?.response?.data?.message);
