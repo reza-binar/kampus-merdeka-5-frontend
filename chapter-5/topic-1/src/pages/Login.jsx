@@ -10,6 +10,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
 
     const login = async (event) => {
+        // Prevent default is to prevent the default behavior
         event.preventDefault();
 
         try {

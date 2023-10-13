@@ -37,6 +37,12 @@ function NavbarComponent() {
                 setUser(data);
             } catch (error) {
                 if (axios.isAxiosError(error)) {
+                    // If token is not valid
+                    if (error.response.status === 401) {
+                        localStorage.removeItem("token");
+                        return;
+                    }
+
                     alert(error?.response?.data?.message);
                     return;
                 }
@@ -58,12 +64,16 @@ function NavbarComponent() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     {/* Left Navbar */}
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/">
-                            Home
-                        </Nav.Link>
-                        <Nav.Link as={Link} to="/search">
-                            Search Movie
-                        </Nav.Link>
+                        {user && (
+                            <>
+                                <Nav.Link as={Link} to="/">
+                                    Popular
+                                </Nav.Link>
+                                <Nav.Link as={Link} to="/search">
+                                    Search
+                                </Nav.Link>
+                            </>
+                        )}
                     </Nav>
                     {/* Right Navbar */}
                     <Nav className="ms-auto">

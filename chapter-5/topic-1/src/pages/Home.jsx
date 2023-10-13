@@ -31,6 +31,7 @@ const Home = () => {
                 );
             } catch (error) {
                 if (axios.isAxiosError(error)) {
+                    // If token is not valid
                     if (error.response.status === 401) {
                         localStorage.removeItem("token");
                         return navigate("/login");
@@ -52,6 +53,8 @@ const Home = () => {
             try {
                 // Get token from local storage
                 const token = localStorage.getItem("token");
+
+                // If the token is not exist in the local storage
                 if (!token) return;
 
                 const response = await axios.get(
