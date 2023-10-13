@@ -1,52 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Col, Container, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import MovieItem from "../components/MovieItem";
 
 const Home = () => {
-    const navigate = useNavigate();
-
     const [popularMovies, setPopularMovies] = useState([]);
     const [errors, setErrors] = useState({
         isError: false,
         message: null,
     });
-
-    useEffect(() => {
-        const getMe = async () => {
-            try {
-                const token = localStorage.getItem("token");
-                if (!token) {
-                    return navigate("/login");
-                }
-
-                await axios.get(
-                    `${import.meta.env.VITE_API_URL}/api/v1/auth/me`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
-            } catch (error) {
-                if (axios.isAxiosError(error)) {
-                    // If token is not valid
-                    if (error.response.status === 401) {
-                        localStorage.removeItem("token");
-                        return navigate("/login");
-                    }
-
-                    alert(error?.response?.data?.message);
-                    return;
-                }
-
-                alert(error?.message);
-            }
-        };
-
-        getMe();
-    }, []);
 
     useEffect(() => {
         const getPopularMovies = async () => {
