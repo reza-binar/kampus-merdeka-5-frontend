@@ -41,6 +41,9 @@ function GoogleLogin({ buttonText }) {
     const loginWithGoogle = useGoogleLogin({
         onSuccess: (responseGoogle) =>
             registerLoginWithGoogleAction(responseGoogle.access_token),
+        onError: (errorResponse) => {
+            alert(errorResponse.error_description);
+        },
     });
 
     return (
