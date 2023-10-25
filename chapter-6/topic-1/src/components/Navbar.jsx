@@ -1,29 +1,25 @@
 import { useEffect } from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getMe } from "../redux/actions/authActions";
+import { getMe, logout } from "../redux/actions/authActions";
 
 function NavbarComponent() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const { user, token } = useSelector((state) => state.auth);
 
-    const logout = (event) => {
-        event.preventDefault();
-
-        localStorage.removeItem("token");
-
-        // Redirect to home or reload the home
-        // This is temporary solution, the better solution is using redux
-        window.location.replace("/");
+    const onLogout = () => {
+        dispatch(logout());
+        navigate("/login");
     };
 
     useEffect(() => {
         if (token) {
-            dispatch(getMe());
+            dispatch(getMe(navigate, null, "/login"));
         }
-    }, [dispatch, token]);
+    }, [dispatch, navigate, token]);
 
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
@@ -53,7 +49,7 @@ function NavbarComponent() {
                                 <Nav.Link as={Link} to="/myprofile">
                                     {user?.name}
                                 </Nav.Link>
-                                <Nav.Link as={Button} onClick={logout}>
+                                <Nav.Link as={Button} onClick={onLogout}>
                                     Logout
                                 </Nav.Link>
                             </>
