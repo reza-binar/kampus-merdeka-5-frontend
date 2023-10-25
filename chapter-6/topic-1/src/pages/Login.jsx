@@ -1,47 +1,23 @@
 import { useState } from "react";
 import { Button, Card, Container, Form } from "react-bootstrap";
-import axios from "axios";
 import GoogleLogin from "../components/GoogleLogin";
-// import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { login } from "../redux/actions/authActions";
 
 const Login = () => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const login = async (event) => {
+    const onSubmit = async (event) => {
         // Prevent default is to prevent the default behavior
         event.preventDefault();
 
-        try {
-            const response = await axios.post(
-                `${import.meta.env.VITE_API_URL}/api/v1/auth/login`,
-                {
-                    email,
-                    password,
-                }
-            );
-            const { data } = response.data;
-            const { token } = data;
-
-            // Save our token
-            localStorage.setItem("token", token);
-
-            // Redirect to home
-            // navigate("/");
-
-            // Redirect to home or reload the home
-            // This is temporary solution, the better solution is using redux
-            window.location.replace("/");
-        } catch (error) {
-            if (axios.isAxiosError(error)) {
-                alert(error?.response?.data?.message);
-                return;
-            }
-
-            alert(error?.message);
-        }
+        // Call the login action from redux action
+        dispatch(login(email, password, navigate));
     };
 
     return (
@@ -51,7 +27,7 @@ const Login = () => {
                 <Card.Body>
                     <div className="row">
                         <div className="col">
-                            <Form onSubmit={login} className="mb-4">
+                            <Form onSubmit={onSubmit} className="mb-4">
                                 <Form.Group
                                     className="mb-3"
                                     controlId="formBasicEmail"

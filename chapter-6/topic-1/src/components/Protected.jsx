@@ -1,43 +1,16 @@
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { getMe } from "../redux/actions/authActions";
 
 const Protected = ({ children }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const getMe = async () => {
-            try {
-                const token = localStorage.getItem("token");
-                if (!token) {
-                    return navigate("/login");
-                }
-
-                await axios.get(
-                    `${import.meta.env.VITE_API_URL}/api/v1/auth/me`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
-            } catch (error) {
-                if (axios.isAxiosError(error)) {
-                    // If token is not valid
-                    if (error.response.status === 401) {
-                        localStorage.removeItem("token");
-                        return navigate("/login");
-                    }
-
-                    alert(error?.response?.data?.message);
-                    return;
-                }
-
-                alert(error?.message);
-            }
-        };
-        getMe();
-    }, []);
+        // Example if we want access protected page (we need to logged in) but we've did not already logged in, -> Login
+        dispatch(getMe(navigate, null, "/login"));
+    }, [dispatch, navigate]);
 
     return children;
 };

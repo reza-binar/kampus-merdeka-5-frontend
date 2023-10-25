@@ -1,71 +1,35 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import { Col, Container, Row } from "react-bootstrap";
 import MovieItem from "../components/MovieItem";
+import { getPopularMovies } from "../redux/actions/movieActions";
 
 const Home = () => {
-    const [popularMovies, setPopularMovies] = useState([]);
+    const dispatch = useDispatch();
+
+    const { popular } = useSelector((state) => state.movie);
+
     const [errors, setErrors] = useState({
         isError: false,
         message: null,
     });
 
     useEffect(() => {
-        const getPopularMovies = async () => {
-            try {
-                // Get token from local storage
-                const token = localStorage.getItem("token");
-
-                // If the token is not exist in the local storage
-                if (!token) return;
-
-                const response = await axios.get(
-                    `${import.meta.env.VITE_API_URL}/api/v1/movie/popular`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
-                const { data } = response.data;
-
-                setPopularMovies(data);
-                setErrors({ ...errors, isError: false });
-            } catch (error) {
-                if (axios.isAxiosError(error)) {
-                    setErrors({
-                        ...errors,
-                        isError: true,
-                        message:
-                            error?.response?.data?.message || error?.message,
-                    });
-                    return;
-                }
-
-                alert(error?.message);
-                setErrors({
-                    ...errors,
-                    isError: true,
-                    message: error?.message,
-                });
-            }
-        };
-
-        getPopularMovies();
-    }, []);
+        dispatch(getPopularMovies(setErrors, errors));
+    }, [dispatch, errors]);
 
     if (errors.isError) {
         return <h1>{errors.message}</h1>;
     }
 
-    if (popularMovies.length === 0) {
+    if (popular.length === 0) {
         return <h1>Loading....</h1>;
     }
 
     return (
         <Container>
             <Row className="g-5">
-                {popularMovies.map((movie) => (
+                {popular.map((movie) => (
                     <Col md={3} key={movie?.id}>
                         <MovieItem
                             id={movie?.id}
