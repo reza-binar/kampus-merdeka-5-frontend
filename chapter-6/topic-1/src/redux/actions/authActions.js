@@ -107,3 +107,7 @@ export const login = (email, password, navigate) => async (dispatch) => {
         alert(error?.message);
     }
 };
+
+export const setTokenAction = (token) => (dispatch) => {
+    dispatch(setToken(token));
+};
